@@ -14,6 +14,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
 
+import static net.bytebuddy.implementation.FixedValue.value;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasSize;
 
@@ -31,7 +32,7 @@ public class BeerEndPointTest {
                 .exchange()
                 .expectStatus().isOk()
                 .expectHeader().valueEquals("Content-Type", "application/json")
-                .expectBody().jsonPath("$.size()", hasSize(greaterThan(1)));
+                .expectBody().jsonPath("$.size()", value(greaterThan(1)));
     }
 
     @Test
